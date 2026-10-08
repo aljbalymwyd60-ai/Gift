@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAPPY BD ❤️</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- خلفية فيديو متحركة للشاشة الأولى (must be muted for autoplay) -->
+  <video id="wallpaper" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="wallpaper-h264.mp4" type="video/mp4">
+  </video>
+
+  <!-- زر تشغيل الموسيقى في الزاوية العلوية -->
+  <button id="music-btn" onclick="toggleMusic()">🎵 Play a Song</button>
+  
+  <!-- ملف الموسيقى (مخفي) -->
+  <audio id="bg-music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="container">
+    <!-- الشاشة الأولى: الترحيب -->
+    <div id="welcome-screen">
+      <img src="Cat.gif" alt="Cute Cat" class="cat-gif">
+      <p class="hey-text">(●'◡'●)</p>
+      <div class="title">حلوة ولا حلوة 🙂‍↕️</div>
+      <div class="btn-group">
+        <button onclick="showGifts()">Yeppp</button>
+        <button id="no-btn" onmouseover="moveButton()" ontouchstart="moveButton()">No</button>
+      </div>
+    </div>
+
+    <!-- الشاشة الثانية: الصندوق الأبيض والبطاقات الثلاث -->
+    <div id="gift-screen" style="display: none;">
+      <div class="white-box">
+        <h2 class="main-title">يلا انجويي 💐</h2>
+        <p class="subtitle">Go from left to right with the cards</p>
+        
+        <div class="grid-3">
+          <!-- البطاقة 1: الرسالة -->
+          <div class="card" onclick="openModal('cat3.gif', 'HEYY ❤️ \n ☆*: .｡. o(≧▽≦)o .｡.:*☆. \n ان شاء الله تكوني حبيتيخا هههههههههه \n شفتي عمري مايهم |: \n Moa ^_~')">✉️</div>          
+          <!-- البطاقة 3: بطاقة الهدية (لوحة الرسم بالورود) -->
+          <div class="card" onclick="openFlowerCanvas()">🌷</div>
+
+          <!-- البطاقة 2: باقة الورود (الصورة) -->
+          <div class="card" onclick="openBouquet()">💐</div>
+          
+        
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. نافذة الرسالة النصية المنبثقة -->
+ <!-- 1. نافذة الرسالة النصية المنبثقة -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    
+    <!-- وضعنا وسم الصورة بدلاً من العنوان النصي -->
+    <img id="modal-gif" src="cat3.gif" alt="Kitty" class="modal-gif">
+    
+    <p id="modal-body"></p>
+  </div>
+</div>
+
+  <!-- 2. نافذة باقة الورود (الصورة) -->
+  <!-- نافذة باقة الورود (صفحة كاملة كأنها شاشة جديدة) -->
+<div id="bouquet-modal" class="full-page-modal" style="display: none;">
+  <!-- زر الإغلاق/العودة شفاف أعلى اليمين -->
+  <button class="close-flower-btn" onclick="closeBouquet()">✕</button>
+
+  <div class="bouquet-page-content">
+    <h1 class="bouquet-title">يلا وردة للمبتعثة 🌸</h1>
+    
+    <!-- عرض صورة/GIF باقة الورود -->
+    <div class="bouquet-image-container">
+      <img src="flower.gif" alt="Bouquet" class="bouquet-img"> 
+      <!-- ملاحظة: استبدل cat.gif برابط أو اسم صورة/GIF الباقة لديك -->
+    </div>
+
+  </div>
+</div>
+
+  <!-- 3. نافذة الرسم بالورود (بطاقة الهدية) -->
+  <div id="flower-modal" class="flower-modal" style="display: none;">
+    <button class="close-flower-btn" onclick="closeFlowerCanvas()">✕</button>
+    
+    <!-- القائمة المنسدلة للأدوات (زر الثلاث نقاط) -->
+    <div class="flower-dropdown">
+      <button class="more-btn" onclick="toggleMenu(event)">⋮</button>
+      <div id="flower-menu" class="dropdown-content">
+        <button id="draw-tool-btn" class="menu-btn active" onclick="selectTool('draw')">draw</button>
+        <button id="erase-tool-btn" class="menu-btn" onclick="selectTool('erase')">erase</button>
+        <label class="menu-btn color-row" for="bg-picker">🎨 Background
+          <input type="color" id="bg-picker" value="#eaf2ff" onclick="event.stopPropagation()">
+        </label>
+        <button class="menu-btn clear-btn" onclick="clearCanvas()">delete All</button>
+      </div>
+    </div>
+
+    <div class="flower-instruction">🌸 وريني وش سويتي اوكي </div>
+    <div class="flower-love">انجويي</div>
+    <canvas id="flowerCanvas"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
